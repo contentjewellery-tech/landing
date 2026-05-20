@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Family Gold Masters, 1 грам золота у подарунок</title>
+  <meta name="description" content="Тестовий лендинг Family Gold Masters з офером 1 грам золота у подарунок при створенні обручок." />
+  <style>
+    :root {
+      --ivory: #FFFBF4;
+      --pale-sky: #8D94A6;
+      --storm: #272936;
+      --sapphire: #16142A;
+      --line: rgba(39, 41, 54, 0.12);
+      --card: rgba(255, 251, 244, 0.74);
+      --shadow: 0 18px 50px rgba(22, 20, 42, 0.08);
+      --radius: 24px;
+      --container: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fffdf8 0%, #fffbf4 100%);
+      color: var(--storm);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+    }
+    .skip-link:focus {
+      left: 16px;
+      top: 16px;
+      background: var(--sapphire);
+      color: var(--ivory);
+      padding: 10px 14px;
+      border-radius: 10px;
+      z-index: 1000;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      padding: 22px 0;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: var(--sapphire);
+    }
+
+    .header-note {
+      font-size: 14px;
+      color: var(--pale-sky);
+    }
+
+    .hero {
+      padding: 42px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--pale-sky);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      background: rgba(255,255,255,0.45);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--sapphire);
+      line-height: 1.08;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: clamp(42px, 5vw, 72px);
+      max-width: 11ch;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: rgba(39, 41, 54, 0.82);
+      max-width: 58ch;
+      margin: 0 0 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+
+    .button-primary {
+      background: var(--sapphire);
+      color: var(--ivory);
+      box-shadow: 0 14px 28px rgba(22, 20, 42, 0.16);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.55);
+      color: var(--storm);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, rgba(141,148,166,0.14), rgba(255,251,244,0.88));
+      border: 1px solid rgba(39, 41, 54, 0.08);
+      border-radius: 30px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ring-visual {
+      border-radius: 24px;
+      border: 1px solid rgba(39, 41, 54, 0.08);
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(141,148,166,0.12));
+      min-height: 290px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ring-visual::before,
+    .ring-visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 14px solid rgba(212, 176, 84, 0.78);
+      width: 180px;
+      height: 180px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-12deg);
+      box-shadow: inset 0 0 18px rgba(255,255,255,0.5), 0 10px 22px rgba(22,20,42,0.08);
+    }
+
+    .ring-visual::before { left: 56px; }
+    .ring-visual::after {
+      right: 56px;
+      transform: translateY(-50%) rotate(10deg);
+    }
+
+    .hero-card-note {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .mini-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(39, 41, 54, 0.08);
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 14px;
+      color: var(--sapphire);
+      margin-bottom: 6px;
+    }
+
+    .mini-card span {
+      font-size: 14px;
+      color: rgba(39, 41, 54, 0.72);
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 36px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(30px, 3.8vw, 52px);
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      margin: 0;
+      font-size: 17px;
+      color: rgba(39, 41, 54, 0.74);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      margin: 0;
+      color: rgba(39, 41, 54, 0.76);
+    }
+
+    .story-block {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .story-panel {
+      background: linear-gradient(160deg, rgba(22,20,42,0.98), rgba(39,41,54,0.9));
+      color: var(--ivory);
+      padding: 34px;
+      border-radius: 28px;
+      box-shadow: 0 22px 44px rgba(22,20,42,0.18);
+    }
+
+    .story-panel p {
+      color: rgba(255,251,244,0.82);
+      margin: 0 0 16px;
+    }
+
+    .quote {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .list-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .list-item:last-child { border-bottom: 0; }
+
+    .badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(22,20,42,0.08);
+      color: var(--sapphire);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex: 0 0 30px;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .process-card {
+      padding: 26px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--line);
+    }
+
+    .process-card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--pale-sky);
+    }
+
+    .process-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .cta {
+      padding-bottom: 96px;
+    }
+
+    .cta-wrap {
+      background: linear-gradient(145deg, rgba(255,251,244,0.9), rgba(141,148,166,0.14));
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .cta-box {
+      background: rgba(255,255,255,0.66);
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      padding: 24px;
+    }
+
+    .cta-box p {
+      margin: 0 0 12px;
+      color: rgba(39,41,54,0.72);
+    }
+
+    .site-footer {
+      padding: 0 0 36px;
+      color: rgba(39,41,54,0.58);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .story-block,
+      .cta-wrap,
+      .grid-3,
+      .process {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(var(--container), calc(100% - 24px));
+      }
+
+      .site-header {
+        padding: 18px 0;
+      }
+
+      .header-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding: 20px 0 46px;
+      }
+
+      h1 {
+        max-width: none;
+      }
+
+      .hero p,
+      .section-header p {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hero-card,
+      .card,
+      .story-panel,
+      .cta-wrap,
+      .cta-box,
+      .process-card {
+        padding: 22px;
+      }
+
+      .hero-card-note {
+        grid-template-columns: 1fr;
+      }
+
+      .ring-visual {
+        min-height: 220px;
+      }
+
+      .ring-visual::before,
+      .ring-visual::after {
+        width: 128px;
+        height: 128px;
+        border-width: 10px;
+      }
+
+      .ring-visual::before { left: 24px; }
+      .ring-visual::after { right: 24px; }
+
+      section {
+        padding: 54px 0;
+      }
+
+      .cta {
+        padding-bottom: 72px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до основного контенту</a>
+
+  <header class="site-header" aria-label="Верхня частина сторінки">
+    <div class="container header-row">
+      <div class="brand">Family Gold Masters</div>
+      <div class="header-note">Тестовий HTML-лендинг, офер 1 грам золота</div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Літній сезон уже в розпалі</div>
+          <h1 id="hero-title">1 грам золота у подарунок при створенні обручок</h1>
+          <p>Для пар, які вже думають про свої обручки, ми підготували особливу можливість. У Family Gold Masters Ви не просто обираєте пару, а створюєте її разом із ювелірним експертом, з урахуванням форми, профілю, відчуття на руці і сенсу, який хочеться зберегти на роки.</p>
+          <p>І саме зараз, у літній сезон, Ви ще встигаєте зафіксувати цю пропозицію та отримати 1 грам золота у подарунок при замовленні обручок.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#cta">Записатись на зустріч</a>
+            <a class="button button-secondary" href="#details">Дізнатися деталі</a>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Візуальний акцент оферу">
+          <div class="ring-visual" role="img" aria-label="Стилізоване зображення пари обручок у преміальній подачі"></div>
+          <div class="hero-card-note">
+            <div class="mini-card">
+              <strong>Тиха цінність</strong>
+              <span>Привілей замість гучної знижки, у тоні бренду.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Зустріч у шоурумі</strong>
+              <span>Примірка, авторський конструктор дизайнів обручок і супровід ювелірного експерта.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Технологія кованого золота</strong>
+              <span>Відчуття якості, конструкції й сенсу в кожній деталі.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Для теплих пар</strong>
+              <span>Лендинг під запис на зустріч, а не під масовий розпродаж.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="details" aria-labelledby="value-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="value-title">Чому цей офер відгукується парам</h2>
+          <p>Тут важлива не лише сама пропозиція, а й те, що вона супроводжує усвідомлений вибір. Обручки створюються не навмання, а через форму, комфорт, характер і відчуття того, що ця пара справді Ваша.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Подарунок, який підсилює вибір</h3>
+            <p>1 грам золота у подарунок не замінює цінність обручок, а делікатно підсилює момент, коли Ви вирішуєте створити свою пару саме зараз.</p>
+          </article>
+          <article class="card">
+            <h3>Літній сезон уже в розпалі</h3>
+            <p>У цей період виробництво стає щільнішим, тому для багатьох пар особливо важливо зафіксувати умови вчасно і спокійно підійти до створення своїх обручок.</p>
+          </article>
+          <article class="card">
+            <h3>Не купувати, а створювати</h3>
+            <p>Саме так формується нова культура вибору обручок, коли важливі не шаблон і не поспіх, а особистий сенс і близькість рішення.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="story-title">
+      <div class="container story-block">
+        <div class="story-panel">
+          <div class="eyebrow" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: rgba(255,251,244,0.68);">Для тих, хто вже у виборі</div>
+          <div class="quote">«Обручки, які залишаться з Вами на роки, починаються з правильної зустрічі.»</div>
+          <p>Теплі пари зазвичай приходять до нас не просто подивитися моделі. Вони приходять, щоб зрозуміти, яка форма ближча, який профіль комфортніший, яке відчуття хочеться залишити з собою на все життя.</p>
+          <p>Саме тому лендинг веде не в “купити зараз”, а в запис на зустріч, де вибір стає більш спокійним, ясним і по-справжньому особистим.</p>
+        </div>
+
+        <div class="card">
+          <div class="section-header" style="margin-bottom: 12px; max-width: none;">
+            <h2 id="story-title" style="font-size: clamp(28px, 3vw, 40px);">Що Ви отримуєте на зустрічі</h2>
+          </div>
+          <div class="list" role="list">
+            <div class="list-item" role="listitem">
+              <span class="badge">01</span>
+              <div>
+                <strong>Примірку зразків для примірки обручок</strong><br />
+                Побачити різницю у ширині, товщині, профілі та посадці на руці.
+              </div>
+            </div>
+            <div class="list-item" role="listitem">
+              <span class="badge">02</span>
+              <div>
+                <strong>Супровід ювелірного експерта</strong><br />
+                Спокійне пояснення відмінностей між моделями, конструкціями й можливостями дизайну.
+              </div>
+            </div>
+            <div class="list-item" role="listitem">
+              <span class="badge">03</span>
+              <div>
+                <strong>Авторський конструктор дизайнів обручок</strong><br />
+                Можливість зібрати пару, яка буде близькою саме Вам.
+              </div>
+            </div>
+            <div class="list-item" role="listitem">
+              <span class="badge">04</span>
+              <div>
+                <strong>Фіксацію оферу сезону</strong><br />
+                І саме зараз, у межах цієї зустрічі, ще можна отримати 1 грам золота у подарунок.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="process-title">Як виглядає шлях до Вашої пари</h2>
+          <p>Це проста, зрозуміла логіка, яка допомагає парам не губитися у виборі й пройти його зі спокоєм, ясністю і відчуттям довіри.</p>
+        </div>
+
+        <div class="process">
+          <article class="process-card">
+            <strong>Крок 1</strong>
+            <h3>Запис на зустріч</h3>
+            <p>Ви залишаєте заявку, а команда узгоджує зручний час зустрічі в шоурумі.</p>
+          </article>
+          <article class="process-card">
+            <strong>Крок 2</strong>
+            <h3>Примірка і вибір</h3>
+            <p>Разом із ювелірним експертом Ви визначаєте форму, профіль, метал і деталі, які будуть близькими саме Вашій парі.</p>
+          </article>
+          <article class="process-card">
+            <strong>Крок 3</strong>
+            <h3>Створення обручок</h3>
+            <p>Після затвердження дизайну ми запускаємо виробництво, а Ви зберігаєте не просто модель, а сенс, закарбований у золоті.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="cta" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-wrap">
+          <div>
+            <div class="section-header" style="margin-bottom: 0;">
+              <h2 id="cta-title">Запишіться на зустріч, щоб зафіксувати особливі умови сезону</h2>
+              <p>Якщо Ви вже думаєте про свої обручки, зараз вдалий момент спокійно прийти на зустріч, приміряти моделі й отримати 1 грам золота у подарунок при замовленні.</p>
+            </div>
+          </div>
+          <div class="cta-box">
+            <p><strong>CTA для тесту:</strong></p>
+            <p>Цей блок можна підключити до форми, Telegram, CRM або кнопки запису, коли будете переносити лендинг у live-середовище.</p>
+            <div class="hero-actions" style="margin-top: 8px;">
+              <a class="button button-primary" href="mailto:hello@example.com?subject=Запис%20на%20зустріч%20FGM">Записатись зараз</a>
+              <a class="button button-secondary" href="tel:+380000000000">Поставити запитання</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Тестовий HTML-драфт для Family Gold Masters, створений для перевірки html-designer skill.</div>
+  </footer>
+</body>
+</html>
