@@ -1,0 +1,2 @@
+#!/bin/bash
+bash "$(git rev-parse --show-toplevel)/landing-wedding-2027/scripts/pre-push-check.sh"
