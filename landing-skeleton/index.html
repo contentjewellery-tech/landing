@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FGM Landing Skeleton</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0b0b11;
+      --bg-dark-2: #12131a;
+      --bg-light: #f8f4ee;
+      --bg-light-2: #fffdf9;
+      --text-dark: #17171d;
+      --text-light: #f7f2eb;
+      --muted-dark: rgba(23, 23, 29, 0.72);
+      --muted-light: rgba(247, 242, 235, 0.72);
+      --line-dark: rgba(255,255,255,0.14);
+      --line-light: rgba(20,20,28,0.10);
+      --gold: #d6b27a;
+      --container: 1120px;
+      --radius: 0px;
+      --shadow: 0 30px 80px rgba(0,0,0,.18);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light-2);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .page { overflow-x: hidden; }
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin: 0 auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 84px 0;
+    }
+
+    .section.dark {
+      background: linear-gradient(180deg, var(--bg-dark), var(--bg-dark-2));
+      color: var(--text-light);
+    }
+
+    .section.light {
+      background: linear-gradient(180deg, var(--bg-light-2), var(--bg-light));
+      color: var(--text-dark);
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      font-size: 11px;
+      line-height: 1.4;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: .8;
+    }
+
+    .heading {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: .94;
+      letter-spacing: -0.02em;
+    }
+
+    .heading.hero { font-size: clamp(52px, 8vw, 108px); }
+    .heading.section-title { font-size: clamp(38px, 5vw, 72px); }
+    .heading.card-title { font-size: 34px; }
+
+    .lead, .copy, .meta {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .lead {
+      margin-top: 22px;
+      font-size: 17px;
+      line-height: 1.75;
+      opacity: .92;
+    }
+
+    .copy {
+      margin-top: 16px;
+      font-size: 15px;
+      line-height: 1.8;
+      opacity: .82;
+    }
+
+    .meta {
+      margin-top: 14px;
+      font-size: 12px;
+      line-height: 1.7;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: .6;
+    }
+
+    .stack-center { text-align: center; }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      width: min(100%, 420px);
+      padding: 16px 26px;
+      margin-top: 34px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+
+    .cta:hover { transform: translateY(-2px); }
+    .cta.dark-btn { background: #f5efe6; color: #111117; }
+    .cta.light-btn { background: #12131a; color: #faf5ee; }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 640px;
+      border: 1px solid var(--line-dark);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.08), transparent 36%),
+        radial-gradient(circle at 75% 25%, rgba(214,178,122,.12), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-ring {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      aspect-ratio: 1 / 1;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), rgba(255,255,255,.03) 48%, rgba(0,0,0,0) 72%);
+      box-shadow: inset 0 0 45px rgba(255,255,255,.05), 0 24px 60px rgba(0,0,0,.38);
+    }
+
+    .hero-ring.one { width: 280px; top: 110px; right: 80px; }
+    .hero-ring.two { width: 210px; bottom: 110px; left: 90px; }
+
+    .engraving {
+      position: absolute;
+      right: 26px;
+      bottom: 22px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+    }
+
+    .bullet-list, .benefits-list {
+      display: grid;
+      gap: 16px;
+      max-width: 760px;
+      margin: 38px auto 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .bullet-list li, .benefits-list li {
+      display: grid;
+      grid-template-columns: 16px 1fr;
+      gap: 16px;
+      align-items: start;
+      text-align: left;
+      padding-bottom: 16px;
+      border-bottom: 1px solid currentColor;
+      border-color: rgba(255,255,255,.12);
+    }
+
+    .light .bullet-list li, .light .benefits-list li {
+      border-color: var(--line-light);
+    }
+
+    .diamond {
+      width: 9px;
+      height: 9px;
+      background: currentColor;
+      transform: rotate(45deg);
+      margin-top: 8px;
+      opacity: .75;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 760px;
+      margin: 52px auto 0;
+      display: grid;
+      gap: 24px;
+    }
+
+    .timeline:before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      bottom: 14px;
+      left: 17px;
+      width: 1px;
+      background: var(--line-light);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 58px;
+      text-align: left;
+    }
+
+    .timeline-item:before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      background: var(--text-dark);
+      transform: rotate(45deg);
+    }
+
+    .timeline-step {
+      margin: 0 0 8px;
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      opacity: .65;
+    }
+
+    .timeline-title {
+      margin: 0 0 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      line-height: .95;
+    }
+
+    .timeline-copy {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted-dark);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 48px;
+    }
+
+    .product-card {
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      box-shadow: var(--shadow);
+    }
+
+    .product-visual {
+      position: relative;
+      height: 280px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,.18), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .product-visual .ring-a,
+    .product-visual .ring-b {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), rgba(255,255,255,.02) 50%, rgba(0,0,0,0) 70%);
+    }
+
+    .product-visual .ring-a { width: 136px; left: 48px; top: 64px; }
+    .product-visual .ring-b { width: 96px; right: 44px; bottom: 54px; }
+
+    .product-name {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+    }
+
+    .price-stack {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .price-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .price-row span:last-child { color: rgba(247,242,235,.82); }
+
+    .stories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 52px;
+    }
+
+    .story {
+      display: grid;
+      gap: 18px;
+    }
+
+    .story-visuals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .story-photo {
+      min-height: 280px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.15)),
+        radial-gradient(circle at 35% 20%, rgba(255,255,255,.58), transparent 26%),
+        linear-gradient(160deg, #d9d2c8, #f0ebe3 55%, #c4b29b);
+      border: 1px solid var(--line-light);
+    }
+
+    .story-photo.darkish {
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.34)),
+        radial-gradient(circle at 40% 18%, rgba(255,255,255,.42), transparent 26%),
+        linear-gradient(160deg, #8d847c, #d5c7b8 58%, #554b45);
+    }
+
+    .story-name {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      text-align: center;
+    }
+
+    .story-copy {
+      margin: 0;
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted-dark);
+    }
+
+    .closing-box {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 54px 28px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.02);
+      box-shadow: var(--shadow);
+    }
+
+    .thanks-box {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 54px 28px;
+      text-align: center;
+      border: 1px solid var(--line-light);
+      background: rgba(255,255,255,.35);
+      box-shadow: var(--shadow);
+    }
+
+    .divider {
+      width: 120px;
+      height: 1px;
+      margin: 26px auto 0;
+      background: currentColor;
+      opacity: .18;
+      position: relative;
+    }
+
+    .divider:before,
+    .divider:after {
+      content: "";
+      position: absolute;
+      top: -2px;
+      width: 5px;
+      height: 5px;
+      background: currentColor;
+      transform: rotate(45deg);
+    }
+
+    .divider:before { left: 0; }
+    .divider:after { right: 0; }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .products-grid,
+      .stories {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { min-height: auto; }
+      .hero-visual { min-height: 480px; }
+      .hero-ring.one { width: 220px; top: 80px; right: 40px; }
+      .hero-ring.two { width: 170px; left: 50px; bottom: 90px; }
+    }
+
+    @media (max-width: 640px) {
+      .section { padding: 68px 0; }
+      .container { width: min(calc(100% - 32px), var(--container)); }
+      .heading.hero { font-size: 52px; }
+      .heading.section-title { font-size: 42px; }
+      .hero-visual { min-height: 380px; }
+      .hero-ring.one { width: 170px; top: 62px; right: 24px; }
+      .hero-ring.two { width: 130px; left: 28px; bottom: 72px; }
+      .bullet-list li, .benefits-list li { gap: 12px; }
+      .story-visuals { gap: 10px; }
+      .story-photo { min-height: 220px; }
+      .product-visual { height: 240px; }
+      .timeline-title { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="section dark hero">
+      <div class="container hero-grid">
+        <div class="stack-center" style="text-align:left; max-width: 560px;">
+          <p class="eyebrow">Family Gold Masters · Landing Skeleton</p>
+          <h1 class="heading hero">Обручки, які обирають без поспіху і з відчуттям впевненості</h1>
+          <p class="lead" style="text-align:left; margin-left:0;">Mobile-first luxury skeleton для Family Gold Masters. Побудований як готова база під майбутні оффери, каталоги, консультаційні або promo-led landing pages.</p>
+          <button class="cta dark-btn">Отримати каталог</button>
+          <p class="meta" style="text-align:left; margin-left:0;">Промо-блок, CTA, editorial luxury rhythm, dark / light section logic</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-ring one"></div>
+          <div class="hero-ring two"></div>
+          <div class="engraving">24.06.23 ♥ skeleton preview</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="container stack-center">
+        <p class="eyebrow">Problem Statement</p>
+        <h2 class="heading section-title">Коли весілля попереду, найскладніше, не помилитися з вибором</h2>
+        <div class="divider"></div>
+        <ul class="bullet-list">
+          <li><span class="diamond"></span><span>Важко зрозуміти, який дизайн виглядатиме дорого і залишиться актуальним на роки.</span></li>
+          <li><span class="diamond"></span><span>Бракує часу, щоб спокійно порівняти варіанти, вставки, ширину й посадку без стресу.</span></li>
+          <li><span class="diamond"></span><span>Ціни на золото змінюються, а відкладене рішення майже завжди означає дорожчу покупку.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container stack-center">
+        <p class="eyebrow">Solution Benefits</p>
+        <h2 class="heading section-title">Ми перетворюємо вибір обручок на спокійний, зрозумілий і красивий процес</h2>
+        <p class="copy">Цей блок задає стандартну benefit-структуру для всіх майбутніх лендингів: чітка цінність, premium framing і мінімум шуму.</p>
+        <ul class="benefits-list">
+          <li><span class="diamond"></span><span>Підбираємо напрям під ваш стиль, бюджет і формат весілля без хаотичного пошуку.</span></li>
+          <li><span class="diamond"></span><span>Пояснюємо відмінності між варіантами каменів і матеріалів просто, без перевантаження технічними деталями.</span></li>
+          <li><span class="diamond"></span><span>Даємо можливість замовити заздалегідь і підійти до дня весілля без зайвого поспіху.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="container stack-center">
+        <p class="eyebrow">Process Timeline</p>
+        <h2 class="heading section-title">Як працює структура консультаційного landing flow</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <p class="timeline-step">Step 01</p>
+            <h3 class="timeline-title">Ви залишаєте запит</h3>
+            <p class="timeline-copy">Через каталог, direct або форму заявки. Перша дія завжди одна, проста і low-friction.</p>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-step">Step 02</p>
+            <h3 class="timeline-title">Ми формуємо добірку</h3>
+            <p class="timeline-copy">Показуємо релевантні моделі, пояснюємо матеріали, камені та логіку ціни без інформаційного шуму.</p>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-step">Step 03</p>
+            <h3 class="timeline-title">Ви обираєте свій формат</h3>
+            <p class="timeline-copy">Після цього landing naturally переходить до product showcase, pricing proof або social proof.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container stack-center">
+        <p class="eyebrow">Product Showcase</p>
+        <h2 class="heading section-title">Бібліотека продуктових блоків для майбутніх офферів</h2>
+        <p class="copy">У реальних сторінках тут можуть бути колекції, конкретні моделі, або category-first showcase з прив’язкою до оффера.</p>
+        <div class="products-grid">
+          <article class="product-card">
+            <div class="product-visual" aria-hidden="true">
+              <div class="ring-a"></div>
+              <div class="ring-b"></div>
+            </div>
+            <h3 class="product-name">Classic Pair</h3>
+            <div class="price-stack">
+              <div class="price-row"><span>Moissanite</span><span>від 24 900 грн</span></div>
+              <div class="price-row"><span>Lab Diamond</span><span>від 34 900 грн</span></div>
+              <div class="price-row"><span>Natural Diamond</span><span>від 49 900 грн</span></div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-visual" aria-hidden="true">
+              <div class="ring-a" style="left:64px; top:54px; width:120px;"></div>
+              <div class="ring-b" style="right:54px; bottom:62px; width:110px;"></div>
+            </div>
+            <h3 class="product-name">Signature Set</h3>
+            <div class="price-stack">
+              <div class="price-row"><span>Moissanite</span><span>від 27 500 грн</span></div>
+              <div class="price-row"><span>Lab Diamond</span><span>від 38 700 грн</span></div>
+              <div class="price-row"><span>Natural Diamond</span><span>від 56 400 грн</span></div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-visual" aria-hidden="true">
+              <div class="ring-a" style="left:44px; top:70px; width:126px;"></div>
+              <div class="ring-b" style="right:38px; bottom:50px; width:94px;"></div>
+            </div>
+            <h3 class="product-name">Modern Fine</h3>
+            <div class="price-stack">
+              <div class="price-row"><span>Moissanite</span><span>від 29 200 грн</span></div>
+              <div class="price-row"><span>Lab Diamond</span><span>від 40 100 грн</span></div>
+              <div class="price-row"><span>Natural Diamond</span><span>від 58 900 грн</span></div>
+            </div>
+          </article>
+        </div>
+        <button class="cta dark-btn">Отримати добірку моделей</button>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="container stack-center">
+        <p class="eyebrow">Social Proof</p>
+        <h2 class="heading section-title">Формат social proof, який поєднує емоцію і підтвердження продукту</h2>
+        <div class="stories">
+          <article class="story">
+            <div class="story-visuals">
+              <div class="story-photo"></div>
+              <div class="story-photo darkish"></div>
+            </div>
+            <h3 class="story-name">Олена та Максим</h3>
+            <p class="story-copy">“Ми шукали спокійний, красивий і зрозумілий процес. У підсумку отримали саме ті обручки, які відчуваються нашими.”</p>
+          </article>
+          <article class="story">
+            <div class="story-visuals">
+              <div class="story-photo darkish"></div>
+              <div class="story-photo"></div>
+            </div>
+            <h3 class="story-name">Ірина та Назар</h3>
+            <p class="story-copy">“Було важливо не поспішати і мати вибір. Нам підібрали варіанти, які виглядали дорого і точно підходили нам по стилю.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <div class="closing-box">
+          <p class="eyebrow">Final CTA</p>
+          <h2 class="heading section-title">Skeleton готовий для офферів, каталогів, промо і консультаційних сценаріїв</h2>
+          <p class="lead">Це базова landing-система, яку можна швидко адаптувати під конкретний продукт, lead magnet, сезонний оффер або рекламний креатив.</p>
+          <button class="cta dark-btn">Запустити цей skeleton в роботу</button>
+          <p class="meta">Повтор CTA після strongest proof block · premium close without visual noise</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="container">
+        <div class="thanks-box">
+          <p class="eyebrow">Thank You Continuation</p>
+          <h2 class="heading section-title">Далі цей каркас можна наповнювати реальним контентом без перебудови всієї сторінки</h2>
+          <p class="lead">Тут закладена логіка для hero, benefits, process, product showcase, proof та CTA. Наступний крок, підставляти реальні фото, тексти та offer-specific content.</p>
+          <p class="meta">FGM landing skeleton · mobile-first · ready-to-adapt</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
