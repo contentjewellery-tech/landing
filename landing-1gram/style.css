@@ -1,8 +1,8 @@
 :root {
-  --bg: #f6f1e8;
+  --bg: #f8f4ed;
   --text: #232334;
-  --muted: #3e3f4d;
-  --sapphire: #171526;
+  --muted: #3f4050;
+  --sapphire: #19162e;
   --white: #ffffff;
 }
 
@@ -14,7 +14,6 @@ body {
   color: var(--text);
 }
 
-.hero-page,
 .hero-screen {
   min-height: 100vh;
 }
@@ -26,14 +25,13 @@ body {
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  padding: 34px 18px 32px;
+  padding: 34px 18px 30px;
   gap: 18px;
 }
 
 .hero-brand {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 28px;
-  line-height: 1;
+  font-size: 18px;
+  letter-spacing: 0.20em;
   color: var(--sapphire);
   margin-top: 4px;
 }
@@ -48,36 +46,36 @@ body {
 .hero-copy h1 {
   margin: 0;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(62px, 8vw, 104px);
+  font-size: clamp(64px, 8vw, 106px);
   line-height: 0.88;
   font-weight: 500;
-  letter-spacing: 0.01em;
   color: var(--text);
 }
 
 .hero-copy p {
   margin: 0;
-  font-size: 24px;
+  font-size: 23px;
   line-height: 1.15;
-  letter-spacing: 0.17em;
+  letter-spacing: 0.16em;
   color: var(--muted);
 }
 
 .hero-visual-wrap {
+  flex: 1;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
 }
 
 .hero-visual {
-  width: min(100%, 520px);
-  aspect-ratio: 4 / 5;
-  background-image: url('./hero-approved.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
+  width: min(100%, 540px);
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .hero-bottom {
@@ -92,29 +90,30 @@ body {
   display: block;
   width: 100%;
   padding: 22px 18px;
-  background: linear-gradient(180deg, #25223c 0%, #161427 100%);
+  background: var(--sapphire);
   color: var(--white);
   text-decoration: none;
-  font-size: 28px;
-  letter-spacing: 0.08em;
+  font-size: 26px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .hero-note {
   font-size: 16px;
-  letter-spacing: 0.16em;
-  color: rgba(61, 61, 73, 0.56);
+  letter-spacing: 0.14em;
+  color: rgba(61, 61, 73, 0.48);
 }
 
 @media (max-width: 768px) {
   .hero-block {
     min-height: 100svh;
-    padding: 22px 12px 24px;
+    padding: 24px 12px 24px;
     gap: 16px;
   }
 
   .hero-brand {
-    font-size: 24px;
+    font-size: 14px;
+    letter-spacing: 0.18em;
   }
 
   .hero-copy h1 {
@@ -123,11 +122,11 @@ body {
 
   .hero-copy p {
     font-size: 16px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.11em;
   }
 
   .hero-visual {
-    width: min(100%, 320px);
+    width: min(100%, 360px);
   }
 
   .hero-bottom {
