@@ -1,80 +1,106 @@
 :root {
   --ivory: #f8f3eb;
-  --ink: #222330;
+  --ink: #242432;
   --sapphire: #171526;
   --white: #ffffff;
 }
 
-* { box-sizing: border-box; }
-html, body { margin: 0; min-height: 100%; }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
 body {
   font-family: Inter, Arial, sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.78), transparent 22%),
-    radial-gradient(circle at bottom right, rgba(237,222,200,0.54), transparent 24%),
-    linear-gradient(180deg, #faf6f0 0%, #f5efe6 100%);
+  background: linear-gradient(180deg, #faf6f0 0%, #f3ede3 100%);
   color: var(--ink);
 }
 
 .hero-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 100vh;
 }
 
-.campaign-hero {
-  width: 100%;
+.hero-screen {
+  min-height: 100vh;
+}
+
+.hero-block {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #f7f1e8;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background-image: url('./hero-approved.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.hero-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(248,243,235,0.10) 0%, rgba(248,243,235,0.00) 18%, rgba(248,243,235,0.06) 100%),
+    linear-gradient(180deg, rgba(248,243,235,0.00) 0%, rgba(248,243,235,0.18) 100%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 26px 16px;
-}
-
-.campaign-wrap {
-  width: min(100%, 620px);
+  justify-content: space-between;
+  padding: 36px 20px 40px;
   text-align: center;
 }
 
-.campaign-brand {
+.hero-brand {
   font-size: 18px;
   letter-spacing: 0.22em;
   color: var(--sapphire);
-  margin-bottom: 28px;
 }
 
-.campaign-copy h1 {
+.hero-copy {
+  margin-top: 18px;
+}
+
+.hero-copy h1 {
   margin: 0;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(54px, 8vw, 88px);
+  font-size: clamp(58px, 8vw, 92px);
   line-height: 0.9;
   font-weight: 500;
   color: #232334;
 }
 
-.campaign-copy p {
+.hero-copy p {
   margin: 14px 0 0;
   font-size: 22px;
   line-height: 1.2;
-  letter-spacing: 0.18em;
-  color: #3a3b49;
+  letter-spacing: 0.16em;
+  color: #3b3b48;
 }
 
-.campaign-visual {
+.hero-cta-wrap {
   width: 100%;
-  margin: 28px auto 24px;
 }
 
-.campaign-visual img {
+.hero-cta {
   display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0;
-}
-
-.campaign-cta {
-  display: block;
-  width: 100%;
+  width: min(100%, 620px);
   margin: 0 auto;
   padding: 22px 18px;
   background: linear-gradient(180deg, #25223c 0%, #161427 100%);
@@ -86,7 +112,7 @@ body {
   box-shadow: 0 18px 28px rgba(22,20,39,0.14);
 }
 
-.campaign-note {
+.hero-note {
   margin-top: 16px;
   font-size: 16px;
   letter-spacing: 0.16em;
@@ -94,39 +120,38 @@ body {
 }
 
 @media (max-width: 768px) {
-  .campaign-hero {
-    padding: 18px 12px 26px;
+  .hero-inner {
+    padding: 24px 14px 28px;
   }
 
-  .campaign-wrap {
-    width: min(100%, 420px);
-  }
-
-  .campaign-brand {
+  .hero-brand {
     font-size: 14px;
-    margin-bottom: 20px;
+    letter-spacing: 0.18em;
   }
 
-  .campaign-copy h1 {
-    font-size: clamp(42px, 12vw, 62px);
+  .hero-copy h1 {
+    font-size: clamp(42px, 12vw, 64px);
   }
 
-  .campaign-copy p {
+  .hero-copy p {
     font-size: 15px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     margin-top: 10px;
   }
 
-  .campaign-visual {
-    margin: 22px auto 18px;
-  }
-
-  .campaign-cta {
+  .hero-cta {
+    width: 100%;
     font-size: 18px;
     padding: 18px 14px;
   }
 
-  .campaign-note {
+  .hero-note {
     font-size: 12px;
+    margin-top: 14px;
+  }
+
+  .hero-block,
+  .hero-inner {
+    min-height: 100svh;
   }
 }
